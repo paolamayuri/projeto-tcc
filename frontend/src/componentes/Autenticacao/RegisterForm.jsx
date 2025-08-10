@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import api from '../../api';
 import { formatPhoneBr, isValidPhoneBr } from '../../utilitarios/phone';
 
-export default function RegisterForm() {
+export default function RegisterForm({ onSwitchToLogin }) {
     const [nome, setNome] = useState('');
     const [sobrenome, setSobrenome] = useState('');
     const [email, setEmail] = useState('');
@@ -35,14 +35,19 @@ export default function RegisterForm() {
             {error && <p className="bg-red-100 text-red-700 p-3 rounded-lg mb-4 text-center">{error}</p>}
             <form onSubmit={handleSubmit} className="space-y-3">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                    <div><label className="block text-sm font-medium">Nome</label><input type="text" value={nome} onChange={e => setNome(e.target.value)} className="w-full px-4 py-2 border rounded-lg bg-white/70" required /></div>
-                    <div><label className="block text-sm font-medium">Sobrenome</label><input type="text" value={sobrenome} onChange={e => setSobrenome(e.target.value)} className="w-full px-4 py-2 border rounded-lg bg-white/70" /></div>
+                    <div><label className="block text-sm font-medium">Nome</label><input type="text" value={nome} onChange={e => setNome(e.target.value)} className="w-full px-4 py-2 border rounded-lg bg-white" required /></div>
+                    <div><label className="block text-sm font-medium">Sobrenome</label><input type="text" value={sobrenome} onChange={e => setSobrenome(e.target.value)} className="w-full px-4 py-2 border rounded-lg bg-white" /></div>
                 </div>
-                <div><label className="block text-sm font-medium">Email</label><input type="email" value={email} onChange={e => setEmail(e.target.value)} className="w-full px-4 py-2 border rounded-lg bg-white/70" required /></div>
-                <div><label className="block text-sm font-medium">Telefone</label><input type="tel" value={telefone} onChange={e => setTelefone(formatPhoneBr(e.target.value))} className="w-full px-4 py-2 border rounded-lg bg-white/70" placeholder="(XX) 9XXXX-XXXX" maxLength={16} /></div>
-                <div><label className="block text-sm font-medium">Senha</label><input type="password" value={password} onChange={e => setPassword(e.target.value)} className="w-full px-4 py-2 border rounded-lg bg-white/70" required /></div>
+                <div><label className="block text-sm font-medium">Email</label><input type="email" value={email} onChange={e => setEmail(e.target.value)} className="w-full px-4 py-2 border rounded-lg bg-white" required /></div>
+                <div><label className="block text-sm font-medium">Telefone</label><input type="tel" value={telefone} onChange={e => setTelefone(formatPhoneBr(e.target.value))} className="w-full px-4 py-2 border rounded-lg bg-white" placeholder="(XX) 9XXXX-XXXX" maxLength={16} /></div>
+                <div><label className="block text-sm font-medium">Senha</label><input type="password" value={password} onChange={e => setPassword(e.target.value)} className="w-full px-4 py-2 border rounded-lg bg-white" required /></div>
                 <button type="submit" className="w-full bg-purple-500 text-white py-2.5 rounded-lg font-semibold hover:bg-purple-600 transition-transform transform hover:scale-105">Cadastrar</button>
             </form>
+            {onSwitchToLogin && (
+                <p className="text-center mt-5 text-sm text-gray-700">Já tem uma conta?
+                    <button onClick={onSwitchToLogin} className="font-semibold text-purple-600 hover:text-purple-800 hover:underline ml-1">Entrar</button>
+                </p>
+            )}
         </div>
     );
 }
