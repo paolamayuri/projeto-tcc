@@ -59,6 +59,8 @@ export default function BookingProcess({ user, onLogout }) {
         { num: 4, title: "Confirmação" },
     ];
 
+    const selectedServiceId = bookingDetails.services[0]?.id;
+
     return (
         <div className="min-h-screen bg-gray-100 p-4 md:p-8">
             <header className="flex justify-between items-center mb-8 max-w-4xl mx-auto">
@@ -73,7 +75,7 @@ export default function BookingProcess({ user, onLogout }) {
 
             <main className="max-w-4xl mx-auto">
                 {step === 1 && <ServiceSelectionStep onContinue={handleSelectServices} />}
-                {step === 2 && <ProfessionalSelectionStep onContinue={handleSelectProfessional} />}
+                {step === 2 && <ProfessionalSelectionStep onContinue={handleSelectProfessional} selectedServiceId={selectedServiceId} />}
                 {step === 3 && <TimeSelectionStep bookingDetails={bookingDetails} onContinue={handleSelectDateTime} />}
                 {step === 4 && <ConfirmationStep bookingDetails={bookingDetails} onConfirm={handleConfirmBooking} />}
                 {step === 5 && <SuccessStep onRestart={restart} />}
