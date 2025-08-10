@@ -5,9 +5,9 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 // Telas Principais da Aplicação
-import AuthScreen from './screens/AuthScreen';
-import BookingProcess from './screens/BookingProcess';
-import AdminDashboard from './screens/AdminDashboard';
+import AuthScreen from './telas/AuthScreen';
+import BookingProcess from './telas/BookingProcess';
+import AdminDashboard from './telas/AdminDashboard';
 
 export default function App() {
     const [token, setToken] = useState(null);

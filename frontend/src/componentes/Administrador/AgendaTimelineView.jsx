@@ -34,7 +34,7 @@ export default function AgendaTimelineView({ appointments }) {
                 </h3>
                 <button onClick={goToNextWeek} className="px-4 py-2 bg-gray-200 rounded-lg">Próxima</button>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-7 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 xl:grid-cols-7 gap-4">
                 {weekDays.map(day => {
                     const dailyAppointments = appointments.filter(a => new Date(a.data_hora_inicio).toDateString() === day.toDateString());
                     return <DayTimeline key={day.toISOString()} date={day} appointments={dailyAppointments} />;

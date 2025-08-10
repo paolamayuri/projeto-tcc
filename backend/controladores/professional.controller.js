@@ -1,5 +1,5 @@
 // controllers/professional.controller.js
-const db = require('../config/database');
+const db = require('../configuracoes/database');
 
 // FUNÇÃO QUE ESTAVA FALTANDO
 exports.getAllProfessionals = (req, res) => {

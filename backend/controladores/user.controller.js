@@ -1,5 +1,5 @@
 // controllers/user.controller.js
-const db = require('../config/database');
+const db = require('../configuracoes/database');
 
 exports.updateUser = (req, res) => {
     const { id } = req.params;

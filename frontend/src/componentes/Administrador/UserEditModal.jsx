@@ -1,7 +1,7 @@
 // src/components/Admin/UserEditModal.jsx
 import React, { useState } from 'react';
 import api from '../../api';
-import { formatPhoneBr, isValidPhoneBr } from '../../utils/phone';
+import { formatPhoneBr, isValidPhoneBr } from '../../utilitarios/phone';
 
 export default function UserEditModal({ userToEdit, onClose, onSave }) {
     const [nome, setNome] = useState(userToEdit.nome);

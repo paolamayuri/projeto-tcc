@@ -1,5 +1,5 @@
 // controllers/appointment.controller.js
-const db = require('../config/database');
+const db = require('../configuracoes/database');
 
 function getBusinessHoursForDay(dayOfWeek) {
     // 0: Domingo, 1: Segunda, 2: Terça, 3: Quarta, 4: Quinta, 5: Sexta, 6: Sábado

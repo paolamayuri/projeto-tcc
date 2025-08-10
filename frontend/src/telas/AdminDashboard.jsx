@@ -3,19 +3,19 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import api from '../api';
 import { toast } from 'react-toastify';
-import { PlusIcon } from '../components/Icons';
+import { PlusIcon } from '../componentes/Icons';
 
 // Importando TODOS os componentes do admin
-import AgendaTimelineView from '../components/Admin/AgendaTimelineView';
-import AppointmentList from '../components/Admin/AppointmentList';
-import ClientList from '../components/Admin/ClientList';
-import ServiceManager from '../components/Admin/ServiceManager';
-import ProfessionalManager from '../components/Admin/ProfessionalManager';
-import ConfirmationModal from '../components/Admin/ConfirmationModal';
-import ServiceModal from '../components/Admin/ServiceModal';
-import ProfessionalModal from '../components/Admin/ProfessionalModal';
-import UserEditModal from '../components/Admin/UserEditModal';
-import AppointmentModal from '../components/Admin/AppointmentModal';
+import AgendaTimelineView from '../componentes/Administrador/AgendaTimelineView';
+import AppointmentList from '../componentes/Administrador/AppointmentList';
+import ClientList from '../componentes/Administrador/ClientList';
+import ServiceManager from '../componentes/Administrador/ServiceManager';
+import ProfessionalManager from '../componentes/Administrador/ProfessionalManager';
+import ConfirmationModal from '../componentes/Administrador/ConfirmationModal';
+import ServiceModal from '../componentes/Administrador/ServiceModal';
+import ProfessionalModal from '../componentes/Administrador/ProfessionalModal';
+import UserEditModal from '../componentes/Administrador/UserEditModal';
+import AppointmentModal from '../componentes/Administrador/AppointmentModal';
 
 export default function AdminDashboard({ user, onLogout }) {
     const [view, setView] = useState('agenda');

@@ -1,8 +1,8 @@
 // routes/appointment.routes.js
 const express = require('express');
 const router = express.Router();
-const appointmentController = require('../controllers/appointment.controller');
-const { authenticateToken, authenticateAdmin } = require('../middleware/auth.middleware');
+const appointmentController = require('../controladores/appointment.controller');
+const { authenticateToken, authenticateAdmin } = require('../intermediarios/auth.middleware');
 
 // Rota pública (mas requer dados para consulta)
 router.get('/availability', appointmentController.getAvailability);

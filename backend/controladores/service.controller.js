@@ -1,5 +1,5 @@
 // controllers/service.controller.js
-const db = require('../config/database');
+const db = require('../configuracoes/database');
 
 // Lógica de GET /api/services
 exports.getAllServices = (req, res) => {

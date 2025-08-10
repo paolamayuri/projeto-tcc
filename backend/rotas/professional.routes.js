@@ -1,8 +1,8 @@
 // routes/professional.routes.js
 const express = require('express');
 const router = express.Router();
-const professionalController = require('../controllers/professional.controller');
-const { authenticateAdmin } = require('../middleware/auth.middleware');
+const professionalController = require('../controladores/professional.controller');
+const { authenticateAdmin } = require('../intermediarios/auth.middleware');
 
 // Rota pública
 router.get('/professionals', professionalController.getAllProfessionals);

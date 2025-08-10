@@ -1,8 +1,8 @@
 // routes/service.routes.js
 const express = require('express');
 const router = express.Router();
-const serviceController = require('../controllers/service.controller');
-const { authenticateAdmin } = require('../middleware/auth.middleware');
+const serviceController = require('../controladores/service.controller');
+const { authenticateAdmin } = require('../intermediarios/auth.middleware');
 
 // Rota pública para listar todos os serviços
 router.get('/services', serviceController.getAllServices);
