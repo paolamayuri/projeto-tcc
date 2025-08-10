@@ -1,6 +1,7 @@
 // src/components/Admin/UserEditModal.jsx
 import React, { useState } from 'react';
 import api from '../../api';
+import { formatPhoneBr, isValidPhoneBr } from '../../utils/phone';
 
 export default function UserEditModal({ userToEdit, onClose, onSave }) {
     const [nome, setNome] = useState(userToEdit.nome);
@@ -11,9 +12,13 @@ export default function UserEditModal({ userToEdit, onClose, onSave }) {
     const handleSubmit = async (e) => {
         e.preventDefault();
         setError('');
+        if (telefone && !isValidPhoneBr(telefone)) {
+            setError('Telefone inválido.');
+            return;
+        }
         try {
             const token = localStorage.getItem('token');
-            const payload = { nome, sobrenome, telefone };
+            const payload = { nome, sobrenome, telefone: telefone.replace(/\D/g, '') };
             await api.put(`/users/${userToEdit.id}`, payload, { headers: { Authorization: `Bearer ${token}` } });
             onSave();
             onClose();
@@ -33,7 +38,7 @@ export default function UserEditModal({ userToEdit, onClose, onSave }) {
                             <div><label className="block text-sm font-medium">Nome</label><input type="text" value={nome} onChange={e => setNome(e.target.value)} className="w-full px-4 py-2 border rounded-lg" required /></div>
                             <div><label className="block text-sm font-medium">Sobrenome</label><input type="text" value={sobrenome} onChange={e => setSobrenome(e.target.value)} className="w-full px-4 py-2 border rounded-lg" /></div>
                         </div>
-                        <div><label className="block text-sm font-medium">Telefone</label><input type="tel" value={telefone} onChange={e => setTelefone(e.target.value)} className="w-full px-4 py-2 border rounded-lg" /></div>
+                        <div><label className="block text-sm font-medium">Telefone</label><input type="tel" value={telefone} onChange={e => setTelefone(formatPhoneBr(e.target.value))} className="w-full px-4 py-2 border rounded-lg" maxLength={16} /></div>
                         <div><label className="block text-sm font-medium text-gray-500">Email (não pode ser alterado)</label><input type="email" value={userToEdit.email} className="w-full px-4 py-2 border rounded-lg bg-gray-100" disabled /></div>
                     </div>
                     <div className="p-4 bg-gray-50 flex justify-end space-x-3">

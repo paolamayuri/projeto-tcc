@@ -19,32 +19,18 @@ export default function DayTimeline({ date, appointments }) {
         return { top, height: Math.max(height, 20) };
     }
 
-    // --- INÍCIO DA NOVA LÓGICA DE AGRUPAMENTO ---
+    // Bucketiza por minuto para evitar chaves flutuantes (ex.: 540, 555, etc.)
     const groupedAppointments = appointments.reduce((acc, apt) => {
         const { top, height } = getPositionAndHeight(apt.data_hora_inicio, apt.data_hora_fim);
-        
-        // A chave do grupo será a posição 'top'. Agendamentos no mesmo horário terão o mesmo 'top'.
-        const key = top;
-
+        const bucket = Math.round(top); // aproxima para o minuto mais próximo
+        const key = String(bucket);
         if (!acc[key]) {
-            acc[key] = {
-                appointments: [],
-                top: top,
-                // Usamos a maior altura do grupo para o contêiner
-                height: 0, 
-            };
+            acc[key] = { appointments: [], top: bucket, height: 0 };
         }
-
         acc[key].appointments.push(apt);
-        
-        // Garante que o contêiner do grupo tenha a altura do maior agendamento
-        if (height > acc[key].height) {
-            acc[key].height = height;
-        }
-
+        if (height > acc[key].height) acc[key].height = height;
         return acc;
     }, {});
-    // --- FIM DA NOVA LÓGICA DE AGRUPAMENTO ---
 
     const title = date.toLocaleDateString('pt-BR', { weekday: 'long', day: '2-digit' });
     const isClosedDay = date.getDay() === 0 || date.getDay() === 1;
@@ -63,22 +49,14 @@ export default function DayTimeline({ date, appointments }) {
                         <p className="font-semibold text-gray-500">Fechado</p>
                     </div>
                 )}
-                
-                {/* --- INÍCIO DA RENDERIZAÇÃO ALTERADA --- */}
-                {/* Agora, mapeamos os GRUPOS, não mais os agendamentos diretamente */}
+
                 {Object.values(groupedAppointments).map((group, index) => (
-                    // 1. O Contêiner do Grupo: Posicionado de forma absoluta, com Flexbox
                     <div
                         key={index}
-                        className="absolute left-12 right-0 flex gap-1" // Adicionado "flex" e "gap-1"
-                        style={{
-                            top: `${group.top}px`,
-                            height: `${group.height}px`,
-                        }}
+                        className="absolute left-12 right-0 flex gap-1"
+                        style={{ top: `${group.top}px`, height: `${group.height}px` }}
                     >
-                        {/* 2. Mapeamos os agendamentos DENTRO do grupo */}
                         {group.appointments.map(apt => (
-                            // 3. O Card do Agendamento: Agora é um item flexível, sem posicionamento
                             <div 
                                 key={apt.id}
                                 className="flex-1 min-w-0 bg-pink-200 border-l-4 border-pink-500 p-2 rounded-lg overflow-hidden"
@@ -90,8 +68,7 @@ export default function DayTimeline({ date, appointments }) {
                         ))}
                     </div>
                 ))}
-                {/* --- FIM DA RENDERIZAÇÃO ALTERADA --- */}
             </div>
         </div>
     );
-};
+}
