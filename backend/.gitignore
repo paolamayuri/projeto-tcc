@@ -1,0 +1,11 @@
+# Pasta de dependências do Node, que não deve ser enviada
+node_modules
+
+# Arquivo de ambiente com as chaves e segredos
+.env
+
+# Arquivo do banco de dados SQLite (opcional, mas recomendado)
+salao.db
+
+# Arquivos de configuração do nodemon
+nodemon.json
