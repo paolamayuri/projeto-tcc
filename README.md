@@ -5,7 +5,7 @@
 ![Express.js](https://img.shields.io/badge/express.js-%23404d59.svg?style=for-the-badge&logo=express&logoColor=%2361DAFB)
 ![MySQL](https://img.shields.io/badge/mysql-%2300f.svg?style=for-the-badge&logo=mysql&logoColor=white)
 
-Projeto de TCC (Trabalho de Conclusão de Curso) em Análise e Desenvolvimento de Sistemas. Consiste em um sistema web completo para o gerenciamento de um salão de beleza, permitindo o agendamento de horários, além do cadastro e gerenciamento de clientes e serviços.
+O projeto consiste em um sistema web completo para o gerenciamento de um salão de beleza, permitindo o agendamento de horários, além do cadastro e gerenciamento de clientes e serviços.
 
 ## 📝 Índice
 
@@ -120,7 +120,3 @@ O projeto está organizado em duas pastas principais:
     -   `src/pages`: Páginas da aplicação.
     -   `src/styles`: Arquivos de estilização CSS.
 
-
-Projeto desenvolvido por **Paola Mayuri Oda**.
-
-[![GitHub](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/paolamayuri)
